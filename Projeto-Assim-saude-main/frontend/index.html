@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/styles.css">
+  <script defer src="./js/nav.js"></script>
+  <title>Assim Saúde — Início</title>
+</head>
+
+<body>
+  <header class="container header">
+    <div class="brand">Assim Saúde <span class="sub">Sistema</span></div>
+    <button id="nav-toggle" aria-label="Abrir menu">☰</button>
+
+    <nav class="nav" aria-label="Navegação principal">
+      <a href="index.html" class="active">Home</a>
+      <a href="./pages/cargo.html">Cadastro de Cargos</a>
+      <a href="./pages/funcionario.html">Cadastro de Funcionários</a>
+      <a href="./pages/relatorio.html">Relatório</a>
+    </nav>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="container dashboard">
+    <section class="intro">
+      <h1>Bem-vindo ao Sistema Assim Saúde</h1>
+      <p>Gerencie cargos, funcionários e relatórios de forma prática e organizada.</p>
+    </section>
+
+    <section class="cards-grid">
+      <a href="./pages/cargo.html" class="card dash-card">
+        <div class="icon">💼</div>
+        <h2>Cargos</h2>
+        <p>Gerencie e cadastre os cargos disponíveis.</p>
+        <span class="btn-link">Acessar →</span>
+      </a>
+
+      <a href="./pages/funcionario.html" class="card dash-card">
+        <div class="icon">👨‍💼</div>
+        <h2>Funcionários</h2>
+        <p>Cadastre e edite informações dos colaboradores.</p>
+        <span class="btn-link">Acessar →</span>
+      </a>
+
+      <a href="./pages/relatorio.html" class="card dash-card">
+        <div class="icon">📊</div>
+        <h2>Relatórios</h2>
+        <p>Visualize e exporte dados completos do sistema.</p>
+        <span class="btn-link">Acessar →</span>
+      </a>
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer class="footer">© 2025 Assim Saúde — Sistema desenvolvido por Rodrigo Ferreira</footer>
+  </main>
+</body>
+</html>

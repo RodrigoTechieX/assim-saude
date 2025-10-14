@@ -1,0 +1,23 @@
+# =====================================================
+# Flask e Extensões
+# =====================================================
+Flask==3.0.3
+Flask-Cors==4.0.1
+Flask-SQLAlchemy==3.1.1
+Flask-Migrate==4.0.7
+gunicorn==23.0.0
+
+# =====================================================
+# Banco de Dados
+# MySQL para local (PyMySQL) e PostgreSQL para Render
+# =====================================================
+PyMySQL==1.1.1
+psycopg2-binary==2.9.9
+SQLAlchemy==2.0.36
+cryptography==43.0.1
+
+# =====================================================
+# Utilidades e Configurações
+# =====================================================
+python-dotenv==1.0.1
+alembic==1.14.0

@@ -1,0 +1,95 @@
+version: "3.9"
+
+services:
+  # =========================================================
+  # BANCO DE DADOS LOCAL (MySQL)
+  # =========================================================
+  db:
+    image: mysql:8.0
+    container_name: assim_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: assim_saude
+      MYSQL_USER: assim
+      MYSQL_PASSWORD: assim123
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./database/script.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # =========================================================
+  # BACKEND (Flask + Gunicorn)
+  # =========================================================
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: assim_backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file:
+      # Arquivo local (usado no docker-compose local)
+      - ./backend/.env.local
+    environment:
+      # -----------------------------------------
+      # Configuração para o Render (sobrescrita pelo ambiente de deploy)
+      # -----------------------------------------
+      DATABASE_URL: ${DATABASE_URL:-mysql+pymysql://assim:assim123@db:3306/assim_saude}
+
+      # -----------------------------------------
+      # Configurações Flask
+      # -----------------------------------------
+      FLASK_APP: app.py
+      FLASK_ENV: ${FLASK_ENV:-development}
+      FLASK_DEBUG: ${FLASK_DEBUG:-1}
+      PORT: ${PORT:-5000}
+      SECRET_KEY: ${SECRET_KEY:-chave_local_segura}
+
+    volumes:
+      - ./backend:/app
+    ports:
+      - "5000:5000"
+    command: >
+      sh -c "
+        echo '⏳ Aguardando MySQL...' &&
+        until nc -z db 3306; do
+          sleep 2;
+        done &&
+        echo '✅ MySQL iniciado!' &&
+        if [ \"$FLASK_ENV\" = \"production\" ]; then
+          echo '🚀 Iniciando Gunicorn (modo produção)...' &&
+          gunicorn -b 0.0.0.0:${PORT} app:app;
+        else
+          echo '💻 Iniciando Flask (modo desenvolvimento)...' &&
+          flask run --host=0.0.0.0 --port=${PORT};
+        fi
+      "
+
+  # =========================================================
+  # FRONTEND (Nginx)
+  # =========================================================
+  frontend:
+    image: nginx:alpine
+    container_name: assim_frontend
+    restart: unless-stopped
+    volumes:
+      - ./frontend:/usr/share/nginx/html:ro
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+
+# =========================================================
+# VOLUMES
+# =========================================================
+volumes:
+  db_data:

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cargos - Assim Saúde</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+</head>
+<body>
+  <header class="container header">
+    <div class="brand">Assim Saúde <span class="sub">Sistema</span></div>
+    <button id="nav-toggle" aria-label="Abrir menu">☰</button>
+    <nav class="nav" aria-label="Navegação principal">
+      <a href="../index.html">Home</a>
+      <a href="cargo.html">Cadastro de Cargos</a>
+      <a href="funcionario.html">Cadastro de Funcionários</a>
+      <a href="relatorio.html">Relatório</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <a class="small" href="../index.html">← Voltar</a>
+    <h1>Cargos</h1>
+
+    <div class="card">
+        <div class="search-bar">
+          <input id="search_nome" type="text" class="search-input" placeholder="Pesquisar por nome..." />
+          <div class="actions">
+            <button id="btn_search" class="btn btn-secondary">Pesquisar</button>
+            <button id="btn_new" class="btn btn-primary">Novo</button>
+          </div>
+        </div>
+
+
+      <div class="table-wrapper card" style="padding:0;">
+        <table id="tabela_cargos">
+          <thead>
+            <tr><th>ID</th><th>Nome</th><th>Salário</th><th>Descrição</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <section class="card">
+      <h2>Detalhes</h2>
+      <form id="form_cargo">
+        <div class="form-row">
+          <div class="form-group" style="max-width:100px;">
+            <label for="cargo_id">ID</label>
+            <input id="cargo_id" type="text" readonly />
+          </div>
+          <div class="form-group" style="flex:1;">
+            <label for="nome">Nome*</label>
+            <input id="nome" type="text" />
+          </div>
+          <div class="form-group" style="max-width:200px;">
+            <label for="salario">Salário*</label>
+            <input id="salario" type="number" step="0.01" />
+          </div>
+          <div class="form-group" style="flex-basis:100%;">
+            <label for="descricao">Descrição</label>
+            <textarea id="descricao"></textarea>
+          </div>
+        </div>
+        <div style="margin-top:12px;">
+          <button id="btn_save" type="submit" class="btn btn-primary">Salvar</button>
+          <button id="btn_delete" type="button" class="btn btn-secondary">Excluir</button>
+          <button id="btn_new_form" type="button" class="btn">Novo</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer class="footer">© 2025 Assim Saúde — Sistema desenvolvido por Rodrigo Ferreira</footer>
+  </main>
+
+  <!-- Scripts -->
+  <script src="../js/config.js"></script>
+  <script src="../js/cargo.js"></script>
+  <script src="../js/nav.js"></script>
+</body>
+</html>

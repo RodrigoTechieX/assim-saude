@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: assim-saude-backend
+    env: docker
+    plan: free
+    region: oregon
+    branch: main
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      # DATABASE_URL: Recomendado definir no painel do Render como variável de ambiente usando a URL interna do database.

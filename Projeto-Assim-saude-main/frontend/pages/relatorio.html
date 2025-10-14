@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Caminho relativo para o CSS -->
+  <link rel="stylesheet" href="../assets/css/styles.css"/>
+  <title>Relatórios — Assim Saúde</title>
+</head>
+
+<body>
+ 
+  <header class="container header">
+    <div class="brand">Assim Saúde <span class="sub">Sistema</span></div>
+    <button id="nav-toggle" aria-label="Abrir menu">☰</button>
+
+    <nav class="nav" aria-label="Navegação principal">
+      <!-- Caminhos relativos corrigidos -->
+      <a href="../index.html">Home</a>
+      <a href="cargo.html">Cadastro de Cargos</a>
+      <a href="funcionario.html">Cadastro de Funcionários</a>
+      <a href="relatorio.html" class="active">Relatório</a>
+    </nav>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="container">
+    <!-- Caminho relativo corrigido -->
+    <a class="small" href="../index.html">← Voltar</a>
+    <h1>Relatórios do Sistema</h1>
+    <p>Visualize e filtre os dados de funcionários, cargos e salários.</p>
+
+    <!-- FILTRO -->
+    <section class="card">
+      <h2>Filtros</h2>
+      <div class="search-bar">
+        <input id="filter_nome" type="text" placeholder="Filtrar por nome..." />
+        <select id="filter_cargo">
+          <option value="">Todos os cargos</option>
+        </select>
+        <button id="btn_filter" class="btn btn-secondary">Filtrar</button>
+      </div>
+    </section>
+
+    <!-- TABELA DE RELATÓRIO -->
+    <section class="card" style="margin-top: 20px;">
+      <h2>Resultados</h2>
+      <div class="table-wrapper card" style="padding: 0;">
+        <table id="tabela_relatorio">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                    <th>Cargo</th>
+                    <th>Salário</th>
+                  </tr>
+                </thead>
+          <tbody>
+            
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    
+
+    <!-- RODAPÉ -->
+    <footer class="footer">© 2025 Assim Saúde — Sistema desenvolvido por Rodrigo Ferreira</footer>
+  </main>
+
+    <script src="../js/nav.js"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/relatorio.js"></script>
+</body>
+</html>
